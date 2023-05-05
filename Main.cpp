@@ -36,34 +36,28 @@ cout << "**********WELCOME TO THE TIC TAC TOE GAME**********\n"; >> endl
 
 // Reading and writing of data to a file
 int main() {
-	// Create and open a text file
-	ofstream MyFile("rules.txt");
+    // Create and open a text file
+    ofstream MyFile("rules.txt");
 
-	// Write to the file
-    MyFile << "You are X, your friend (or the computer in this case) is O.Players will take turns putting their marks into empty squares." >> endl;
+    string myText;
+    // Read from the text file
+    ifstream MyReadFile("rules.txt");
 
-		// Close the file
-		MyFile.close();
+    while (getline(MyReadFile, myText)) {
+        cout << myText;
+    }
+    // Close the file
+    MyReadFile.close();
 }
-string myText;
-// Read from the text file
-ifstream MyReadFile("rules.txt");
-
-while (getline(MyReadFile, myText)) {
-	cout << myText;
-}
-// Close the file
-MyReadFile.close();
 
 // Inheritance w/polymorphism?
-
 class TicTacToe
 {
 private:
     // Dynamic memory
-    int* dynamicArray1 = new int[9] {1, 2, 3}
-                                    {4, 5, 6}
-                                    {7, 8, 9};
+    int* dynamicArray1 = new int[3][3] {1, 2, 3}
+    {4, 5, 6}
+    {7, 8, 9};
 
 public:
     TicTacToe() {}
@@ -95,30 +89,49 @@ public:
         {
             // User defined function for searching?
             int search(int, int size, int num)
-            for (k = 0; k < 3; k++)
-            {
-                if (k < 2)
+                for (k = 0; k < 3; k++)
                 {
-                    cout << board[m][k] << "  |  ";
+                    if (k < 2)
+                    {
+                        cout << board[m][k] << "  |  ";
+                    }
+                    else
+                    {
+                        cout << board[m][k] << endl;
+                    }
                 }
-                else
-                {
-                    cout << board[m][k] << endl;
-                }
-            }
         }
     } //End PrintBoard Table
+}
 
 
 
 // I/O
 int main() {
-	char name[50];
+    char name[50];
 
-	cout << "Please enter your name: ";
-	cin >> name;
-	cout << "Player X is: " << name << endl;
+    cout << "Please enter your name: " << name;
+    cin >> name; << endl;
 
+
+
+    // Base class
+    class Player {
+    public:
+        string position = "Player 1,";
+    };
+
+    // Derived class
+    class Game : public Player {
+    public:
+        string letter = " is X";
+    };
+
+    int main() {
+        Game myGame;
+        cout << myGame.position + name + myGame.letter;
+        return 0;
+    }
 }
 
 
